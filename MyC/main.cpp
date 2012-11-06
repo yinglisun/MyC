@@ -4,6 +4,12 @@
 
 using namespace std;
 
+void DisplayVector(const vector<int>& vec) {
+    int nNum = 0;
+    for_each(vec.cbegin(), vec.cend(), [&nNum](int n) { ++nNum; cout << n << ' '; });
+    cout << ": Total " << nNum << " integers" << endl;
+}
+
 int main(int argc, const char * argv[])
 {
     vector<int> vecInteger;
@@ -11,10 +17,13 @@ int main(int argc, const char * argv[])
         vecInteger.push_back(i);
     }
     
-    int nNum = 0;
-    for_each(vecInteger.cbegin(), vecInteger.cend(), [&nNum](int n) { ++nNum; cout << n << ' '; });
-    cout << ": Total " << nNum << " integers" << endl;
-
+    DisplayVector(vecInteger);
+    
+    random_shuffle(vecInteger.begin(), vecInteger.end());
+    
+    DisplayVector(vecInteger);
+    
     return 0;
 }
+
 
